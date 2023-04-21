@@ -12,6 +12,8 @@ const App = () => {
     setText(data.slice(0, count));
   };
 
+  // testing
+
   return (
     <section className="section-center">
       <h4>Let's generate some lorem ipsum</h4>
