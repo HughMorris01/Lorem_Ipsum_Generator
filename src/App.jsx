@@ -1,16 +1,15 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import data from './data';
 
 const App = () => {
   const [count, setCount] = useState(1);
-  const [text, useText] = useState([]);
+  const [text, setText] = useState([]);
 
-  const handleChange = (e) => {
-    setCount(e.target.value);
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newArray = data.slice(0, count);
+    let amount = parseInt(count);
+    setText(data.slice(0, count));
   };
 
   return (
@@ -26,13 +25,20 @@ const App = () => {
           name="count"
           id="count"
           value={count}
-          onChange={handleChange}
+          onChange={(e) => {
+            setCount(e.target.value);
+          }}
         ></input>
         <button className="btn" type="submit">
           Generate
         </button>
       </form>
-      <section id="paragraphs"></section>
+      <article className="lorem-text">
+        {text.map((item) => {
+          console.log(nanoid());
+          return <p key={nanoid()}>{item}</p>;
+        })}
+      </article>
     </section>
   );
 };
